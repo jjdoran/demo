@@ -3,15 +3,15 @@ resource "aws_instance" "foo" {
   instance_type = "t2.micro"
   tags = {
     Name = "NEC Demo instance"
-  }
+}
+}
 
 data "terraform_remote_state" "tfstate" {
   backend = "s3"
 
   config {
-    bucket = "mycompany-terraform"
+    bucket = "necdemo"
     key = "terraform/terraform.tfstate"
     region = "eu-west-1"
   }
-}
 }
