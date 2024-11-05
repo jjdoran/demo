@@ -19,7 +19,7 @@ pipeline {
                 $class: 'AmazonWebServicesCredentialsBinding',
                 accessKeyVariable: 'AWS_ACCESS_KEY_ID',
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-                credentialsId: 'jjdoran']]) 
+                credentialsId: '949239344165']]) 
              {
              script {
                     sh 'cd Terraform;terraform plan'
