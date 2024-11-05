@@ -5,13 +5,3 @@ resource "aws_instance" "foo" {
     Name = "NEC Demo instance"
 }
 }
-
-data "terraform_remote_state" "tfstate" {
-  backend = "s3"
-
-  config {
-    bucket = "necdemo"
-    key = "terraform/terraform.tfstate"
-    region = "eu-west-1"
-  }
-}
