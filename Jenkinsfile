@@ -1,7 +1,7 @@
 pipeline {
   agent any
-  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Demo', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
   stages {
+  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Demo', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
     stage('Checkout Code') {
       steps {
         git(url: 'https://github.com/jjdoran/demo', branch: 'main')
