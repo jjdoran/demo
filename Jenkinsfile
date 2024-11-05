@@ -16,21 +16,14 @@ pipeline {
     stage('Terraform Plan') {
        steps {
              script {
-                    sh 'cd Terraform;terraform plan -out=tfplan'
+                    sh 'cd Terraform;terraform plan'
              }
           }
     }
     stage('Terraform Apply') {
        steps {
              script {
-                     sh 'cd Terraform;terraform apply -auto-approve tfplan'
-                    }
-           }
-    }
-    stage('Upload State to S3') {
-       steps {
-             script {
-                    sh 'aws s3 cp terraform.tfstate s3://necdemo'
+                     sh 'cd Terraform;terraform apply -auto-approve'
                     }
            }
     }
