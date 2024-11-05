@@ -6,13 +6,38 @@ pipeline {
         git(url: 'https://github.com/jjdoran/demo', branch: 'main')
       }
     }
-
-    stage('Deploy Terraform') {
+    stage('Terraform Init') {
       steps {
-        sh 'terraform '
-        sh 'terraform init'
-      }
+            script {
+                    sh 'terraform init'
+                  }
+            }
     }
-
+    stage('Terraform Plan') {
+       steps {
+             script {
+                    sh 'terraform plan -out=tfplan'
+             }
+          }
+    }
+    stage('Terraform Apply') {
+       steps {
+             script {
+                     sh 'terraform apply -auto-approve tfplan'
+                    }
+           }
+    }
+    stage('Upload State to S3') {
+       steps {
+             script {
+                    sh 'aws s3 cp terraform.tfstate s3://necdemo'
+                    }
+           }
+    }
+  post {
+        always {
+            cleanWs()
+        }
   }
+ }
 }
