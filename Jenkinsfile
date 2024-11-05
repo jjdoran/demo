@@ -15,11 +15,7 @@ pipeline {
     }
     stage('Terraform Plan') {
        steps {
-             withCredentials([[
-                $class: 'AmazonWebServicesCredentialsBinding',
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
-                credentialsId: '949239344165']]) 
+	withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Demo', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')])
              {
              script {
                     sh 'cd Terraform;terraform plan'
