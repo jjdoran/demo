@@ -7,5 +7,12 @@ pipeline {
       }
     }
 
+    stage('Deploy Terraform') {
+      steps {
+        sh 'terraform '
+        sh 'terraform init'
+      }
+    }
+
   }
 }
