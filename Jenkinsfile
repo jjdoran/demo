@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Demo', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
   stages {
     stage('Checkout Code') {
       steps {
@@ -35,4 +36,5 @@ pipeline {
            }
     }
   }
+ }
 }
